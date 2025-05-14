@@ -17,7 +17,7 @@ This repository contains n8n nodes for interacting with Signal CLI. It includes 
 
 * Node.js (>=18.10) and pnpm (>=9.1)
 * n8n installed globally using `pnpm install n8n -g`
-* Signal CLI set up and running in daemon mode with HTTP JSON-RPC endpoint exposed (`--http`)
+* [Signal CLI](https://github.com/AsamK/signal-cli) set up and running in daemon mode with HTTP JSON-RPC endpoint exposed (`--http`)
 
 
 ## 📥 Installation
@@ -32,7 +32,7 @@ This repository contains n8n nodes for interacting with Signal CLI. It includes 
 ### 🔔 SignalTrigger
 
 * Triggers when a new message is received via Signal CLI.
-* Requires Signal CLI API credential.
+* Requires [Signal CLI](https://github.com/AsamK/signal-cli) API credential.
 * Parameters:
   * `account`: Signal account to listen for incoming messages.
 
