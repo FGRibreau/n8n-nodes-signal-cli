@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-signal-cli",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "n8n nodes for interacting with Signal CLI. It includes a trigger node for receiving messages and an action node for various Signal operations.",
   "keywords": [
     "n8n-community-node-package",
@@ -40,7 +40,7 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/signalCliApi.credentials.js"
+      "dist/credentials/SignalCliApi.credentials.js"
     ],
     "nodes": [
       "dist/nodes/Signal/Signal.node.js",
