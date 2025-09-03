@@ -443,16 +443,24 @@ export class Signal implements INodeType {
 		try {
 			let response;
 			debug('Signal Node: Executing with resource=%s, operation=%s', resource, operation);
-			if (resource === 'message' && operation === 'send') {
-				const account = this.getNodeParameter('account', 0) as string;
-				const recipient = this.getNodeParameter('recipient', 0) as string;
-				const message = this.getNodeParameter('message', 0) as string;
+			if (resource === "message" && operation === "send") {
+        const account = this.getNodeParameter("account", 0) as string;
+        const recipient = this.getNodeParameter("recipient", 0) as string;
+        const message = this.getNodeParameter("message", 0) as string;
+// check if the value of recipient is a group based on if there are alphabetical characters in the string
+        const isTargetAGroup = /[a-zA-Z]/.test(recipient);
 
-				const requestBody = {
-					jsonrpc: '2.0',
-					method: 'send',
-					params: { account, recipient, message },
-					id: uuidv4(),
+        const requestBody = {
+          jsonrpc: "2.0",
+          method: "send",
+          params: {
+            account,
+            message,
+//if value is group send with groupId prefix as required by Signal-cli, otherwise pass through as phone number via recipient
+            [isTargetAGroup ? "groupId" : "recipient"]: recipient,
+          },
+          id: uuidv4(),
+			
 				};
 				debug('Signal Node: Sending message with requestBody=%o', requestBody);
 				response = await axios.post(`${url}`, requestBody);
