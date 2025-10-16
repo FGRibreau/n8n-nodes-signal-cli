@@ -6,7 +6,6 @@ import {
   INodeTypeDescription,
   NodeApiError,
   ITriggerResponse,
-  NodeConnectionType,
 } from 'n8n-workflow';
 import { EventSource } from 'eventsource';
 import debug from 'debug';
@@ -24,7 +23,7 @@ export class SignalTrigger implements INodeType {
       name: 'Signal Trigger',
     },
 		inputs: [],
-		outputs: [NodeConnectionType.Main],
+		outputs: ['main'],
     credentials: [
       {
         name: 'signalCliApi',
