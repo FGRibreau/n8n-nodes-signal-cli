@@ -25,8 +25,9 @@ This repository contains n8n nodes for interacting with Signal CLI. It includes 
 1. Clone this repository.
 2. Run `pnpm install` to install dependencies.
 3. Run `pnpm build` to build the nodes.
-4. Copy the `dist` folder and `package.json` to your n8n custom nodes directory (usually `~/.n8n/custom/nodes/n8n-nodes-signal-cli`).
-
+4. Copy the `dist` folder and `package.json` to your n8n nodes directory (usually `~/.n8n/nodes/n8n-nodes-signal-cli`).
+5. Run `npm i n8n-nodes-signal-cli`
+   
 ## 🤖 Nodes
 
 ### 🔔 SignalTrigger

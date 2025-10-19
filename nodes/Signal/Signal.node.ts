@@ -4,7 +4,6 @@ import {
 	INodeType,
 	INodeTypeDescription,
 	NodeOperationError,
-	NodeConnectionType,
 } from 'n8n-workflow';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
@@ -22,8 +21,8 @@ export class Signal implements INodeType {
 		defaults: {
 			name: 'Signal',
 		},
-		inputs: [NodeConnectionType.Main],
-		outputs: [NodeConnectionType.Main],
+		inputs: ['main'],
+		outputs: ['main'],
 		credentials: [
 			{
 				name: 'signalCliApi',
