@@ -8,6 +8,7 @@ import {
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import Debug from "debug";
+import { sendSignalMessage } from "../../utils/signalApi";
 
 const debug = Debug("n8n:signal");
 
@@ -456,22 +457,13 @@ export class Signal implements INodeType {
         const account = this.getNodeParameter("account", 0) as string;
         const recipient = this.getNodeParameter("recipient", 0) as string;
         const message = this.getNodeParameter("message", 0) as string;
-        // check if the value of recipient is a group based on if there are alphabetical characters in the string
-        const isTargetAGroup = /[a-zA-Z]/.test(recipient);
 
-        const requestBody = {
-          jsonrpc: "2.0",
-          method: "send",
-          params: {
-            account,
-            message,
-            //if value is group send with groupId prefix as required by Signal-cli, otherwise pass through as phone number via recipient
-            [isTargetAGroup ? "groupId" : "recipient"]: recipient,
-          },
-          id: uuidv4(),
-        };
-        debug("Signal Node: Sending message with requestBody=%o", requestBody);
-        response = await axios.post(`${url}`, requestBody);
+        response = await sendSignalMessage({
+          url: credentials.url as string,
+          account,
+          recipient,
+          message
+        });
       } else if (resource === "group" && operation === "create") {
         const account = this.getNodeParameter("account", 0) as string;
         const name = this.getNodeParameter("name", 0) as string;

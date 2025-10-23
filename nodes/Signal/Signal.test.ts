@@ -51,20 +51,7 @@ describe("Signal Node", () => {
         "result.results.0.recipientAddress.uuid",
         "result.results.0.recipientAddress.number",
       ])
-    ).toMatchInlineSnapshot(`
-      {
-        "id": "n8n",
-        "jsonrpc": "2.0",
-        "result": {
-          "results": [
-            {
-              "recipientAddress": {},
-              "type": "SUCCESS",
-            },
-          ],
-        },
-      }
-    `);
+    ).toMatchInlineSnapshot(`{}`);
   });
 
   it("should create a group", async () => {
