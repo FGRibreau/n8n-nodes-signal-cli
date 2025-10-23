@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-signal-cli",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "n8n nodes for interacting with Signal CLI. It includes a trigger node for receiving messages and an action node for various Signal operations.",
   "keywords": [
     "n8n-community-node-package",
