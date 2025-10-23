@@ -18,7 +18,23 @@ This repository contains n8n nodes for interacting with Signal CLI. It includes 
 * Node.js (>=18.10) and pnpm (>=9.1)
 * n8n installed globally using `pnpm install n8n -g`
 * [Signal CLI](https://github.com/AsamK/signal-cli) set up and running in daemon mode with HTTP JSON-RPC endpoint exposed (`--http`)
+<details>
+<summary>🐳 Docker command to run signal-cli locally</summary>
 
+```bash
+docker run -d \
+    --name signal-cli \
+    --restart=always \
+    -p 7583:7583 \
+    -p 8085:8085 \
+    -v "$(pwd)/signal-cli:/var/lib/signal-cli" \
+    --tmpfs /tmp:exec \
+    --shm-size=64m \
+    registry.gitlab.com/packaging/signal-cli/signal-cli-native:latest \
+    daemon --http=0.0.0.0:8085
+```
+
+</details>
 
 ## 📥 Installation
 
