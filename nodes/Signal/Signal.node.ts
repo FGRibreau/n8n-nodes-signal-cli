@@ -40,6 +40,10 @@ export class Signal implements INodeType {
         noDataExpression: true,
         options: [
           {
+            name: "Attachment",
+            value: "attachment",
+          },
+          {
             name: "Contact",
             value: "contact",
           },
@@ -429,6 +433,97 @@ export class Signal implements INodeType {
           },
         },
       },
+      // Attachment properties
+      {
+        displayName: "Operation",
+        name: "operation",
+        type: "options",
+        noDataExpression: true,
+        displayOptions: {
+          show: {
+            resource: ["attachment"],
+          },
+        },
+        options: [
+          {
+            name: "Get",
+            value: "get",
+            action: "Get an attachment",
+          },
+        ],
+        default: "get",
+      },
+      {
+        displayName: "Account",
+        name: "account",
+        type: "string",
+        description: "Phone number (international format)",
+        default: "",
+        required: true,
+        displayOptions: {
+          show: {
+            resource: ["attachment"],
+          },
+        },
+      },
+      {
+        displayName: "Attachment ID",
+        name: "attachmentId",
+        type: "string",
+        default: "",
+        required: true,
+        description:
+          "The attachment ID, taken from a received message's attachments list",
+        displayOptions: {
+          show: {
+            resource: ["attachment"],
+            operation: ["get"],
+          },
+        },
+      },
+      {
+        displayName: "Recipient",
+        name: "recipient",
+        type: "string",
+        default: "",
+        description:
+          "Phone number the attachment was sent from. Set this or Group ID.",
+        displayOptions: {
+          show: {
+            resource: ["attachment"],
+            operation: ["get"],
+          },
+        },
+      },
+      {
+        displayName: "Group ID",
+        name: "groupId",
+        type: "string",
+        default: "",
+        description:
+          "Group ID the attachment was sent in. Set this or Recipient.",
+        displayOptions: {
+          show: {
+            resource: ["attachment"],
+            operation: ["get"],
+          },
+        },
+      },
+      {
+        displayName: "Put Output In Field",
+        name: "binaryPropertyName",
+        type: "string",
+        default: "data",
+        required: true,
+        description:
+          "The name of the output binary field to put the downloaded file in",
+        displayOptions: {
+          show: {
+            resource: ["attachment"],
+            operation: ["get"],
+          },
+        },
+      },
     ],
   };
 
@@ -528,7 +623,13 @@ export class Signal implements INodeType {
         const requestBody = {
           jsonrpc: "2.0",
           method: "sendReaction",
-          params: { account, recipient, reaction, targetAuthor, timestamp },
+          params: {
+            account,
+            recipient,
+            emoji: reaction,
+            targetAuthor,
+            targetTimestamp: timestamp,
+          },
           id: uuidv4(),
         };
 
@@ -546,9 +647,9 @@ export class Signal implements INodeType {
           params: {
             account,
             recipient,
-            reaction,
+            emoji: reaction,
             targetAuthor,
-            timestamp,
+            targetTimestamp: timestamp,
             remove: true,
           },
           id: uuidv4(),
@@ -564,19 +665,90 @@ export class Signal implements INodeType {
         const requestBody = {
           jsonrpc: "2.0",
           method: "sendReceipt",
-          params: { account, recipient, receiptType, timestamp },
+          params: {
+            account,
+            recipient,
+            type: receiptType,
+            "target-timestamp": [timestamp],
+          },
           id: uuidv4(),
         };
 
         response = await axios.post(`${url}`, requestBody);
+      } else if (resource === "attachment" && operation === "get") {
+        const account = this.getNodeParameter("account", 0) as string;
+        const id = this.getNodeParameter("attachmentId", 0) as string;
+        const recipient = this.getNodeParameter("recipient", 0) as string;
+        const groupId = this.getNodeParameter("groupId", 0) as string;
+        const binaryPropertyName = this.getNodeParameter(
+          "binaryPropertyName",
+          0
+        ) as string;
+
+        const params: Record<string, unknown> = { account, id };
+        if (recipient) {
+          params.recipient = recipient;
+        }
+        if (groupId) {
+          params.groupId = groupId;
+        }
+
+        const requestBody = {
+          jsonrpc: "2.0",
+          method: "getAttachment",
+          params,
+          id: uuidv4(),
+        };
+
+        debug("Signal Node: Getting attachment with requestBody=%o", requestBody);
+        const attachmentResponse = await axios.post(`${url}`, requestBody);
+        const rpc = attachmentResponse.data;
+
+        if (rpc && rpc.error) {
+          throw new NodeOperationError(
+            this.getNode(),
+            `signal-cli getAttachment failed for id ${id}: ${rpc.error.message}`
+          );
+        }
+
+        // signal-cli returns the data as a base64 string, either directly as
+        // `result` or nested under `result.data` depending on the build.
+        const result = rpc.result;
+        const base64 =
+          typeof result === "string" ? result : result && result.data;
+        if (!base64) {
+          throw new NodeOperationError(
+            this.getNode(),
+            `signal-cli getAttachment returned an empty payload for id ${id}`
+          );
+        }
+
+        const buffer = Buffer.from(base64, "base64");
+        const binaryData = await this.helpers.prepareBinaryData(buffer, id);
+        const item: INodeExecutionData = {
+          json: { account, id, recipient, groupId },
+          binary: { [binaryPropertyName]: binaryData },
+        };
+        return [[item]];
       }
 
       debug("Signal Node: Response", response?.data);
+      if (response && response.data && response.data.error) {
+        throw new NodeOperationError(
+          this.getNode(),
+          `signal-cli ${resource} ${operation} failed: ${response.data.error.message}`
+        );
+      }
       const item: INodeExecutionData = {
         json: response?.data,
       };
       return [[item]];
     } catch (error) {
+      // Preserve specific, already-actionable errors (e.g. JSON-RPC failures
+      // surfaced above) instead of masking them with a generic message.
+      if (error instanceof NodeOperationError) {
+        throw error;
+      }
       throw new NodeOperationError(
         this.getNode(),
         "Error interacting with Signal API",

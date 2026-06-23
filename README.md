@@ -78,6 +78,9 @@ docker run -d \
   * **Receipt**:
     * Send: Send a receipt (read or viewed) for a message.
       * Parameters: `account`, `recipient`, `receiptType`, `timestamp`
+  * **Attachment**:
+    * Get: Download a received attachment by its id (returns binary data).
+      * Parameters: `account`, `attachmentId`, `recipient` or `groupId`, `binaryPropertyName`
 
 ## 💻 Development
 
