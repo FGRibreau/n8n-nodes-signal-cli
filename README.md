@@ -1,5 +1,9 @@
 # 📦 n8n-nodes-signal-cli
 
+<p align="center">
+  <img src="assets/signal-cli-flow.svg" alt="signal-cli bridges to n8n: incoming messages arrive via the Signal Trigger node, and the Signal node performs Message, Group, Contact, Reaction, Receipt and Attachment operations" width="900">
+</p>
+
 This repository contains n8n nodes for interacting with Signal CLI. It includes a trigger node for receiving messages and an action node for various Signal operations.
 
 ## 📚 Table of Contents
@@ -94,7 +98,7 @@ For example, you can run the following command in your terminal:
 
 ```bash
 export ENDPOINT="http://127.0.0.1:8085" # signal-cli endpoint
-export ACCOUNT_NUMBER="±33620382719" # your phone number in international format
+export ACCOUNT_NUMBER="+33620382719" # your phone number in international format
 ```
 
 

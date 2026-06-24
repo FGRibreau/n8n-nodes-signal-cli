@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <!-- Card gradients -->
+    <linearGradient id="sigGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="trigGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="actGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="opsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#64748b"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+
+    <!-- Flow gradients -->
+    <linearGradient id="flowIn" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.15"/>
+      <stop offset="45%" stop-color="#10b981" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#10b981" stop-opacity="1"/>
+      <stop offset="55%" stop-color="#10b981" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0.15"/>
+      <animateTransform attributeName="gradientTransform" type="translate" from="-1 0" to="1 0" dur="2s" repeatCount="indefinite"/>
+    </linearGradient>
+    <linearGradient id="flowOut" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.15"/>
+      <stop offset="45%" stop-color="#f59e0b" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#f59e0b" stop-opacity="1"/>
+      <stop offset="55%" stop-color="#f59e0b" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.15"/>
+      <animateTransform attributeName="gradientTransform" type="translate" from="1 0" to="-1 0" dur="2s" repeatCount="indefinite"/>
+    </linearGradient>
+    <linearGradient id="flowOps" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d97706" stop-opacity="0.15"/>
+      <stop offset="45%" stop-color="#d97706" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#d97706" stop-opacity="1"/>
+      <stop offset="55%" stop-color="#d97706" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#d97706" stop-opacity="0.15"/>
+      <animateTransform attributeName="gradientTransform" type="translate" from="-1 0" to="1 0" dur="2s" repeatCount="indefinite"/>
+    </linearGradient>
+
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#64748b" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="34" text-anchor="middle" font-size="19" font-weight="700" fill="#1e293b">n8n-nodes-signal-cli</text>
+  <text x="450" y="54" text-anchor="middle" font-size="12" fill="#64748b">Receive and send Signal messages from your n8n workflows</text>
+
+  <!-- ==================== signal-cli (source) ==================== -->
+  <g transform="translate(60, 90)" filter="url(#cardShadow)">
+    <rect width="180" height="150" rx="16" fill="white"/>
+    <rect width="180" height="46" rx="16" fill="url(#sigGrad)"/>
+    <rect y="34" width="180" height="12" fill="url(#sigGrad)"/>
+    <!-- chat bubble icon -->
+    <g transform="translate(82, 11)">
+      <rect x="0" y="0" width="26" height="18" rx="6" fill="none" stroke="white" stroke-width="2"/>
+      <path d="M 7 18 L 7 24 L 13 18" fill="none" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="8" cy="9" r="1.6" fill="white"/>
+      <circle cx="13" cy="9" r="1.6" fill="white"/>
+      <circle cx="18" cy="9" r="1.6" fill="white"/>
+    </g>
+    <text x="90" y="74" text-anchor="middle" font-size="16" font-weight="700" fill="#1e293b">signal-cli</text>
+    <text x="90" y="92" text-anchor="middle" font-size="11" fill="#64748b">JSON-RPC daemon</text>
+    <g transform="translate(40, 110)">
+      <rect width="100" height="20" rx="10" fill="#6366f1" fill-opacity="0.1"/>
+      <text x="50" y="14" text-anchor="middle" font-size="9" fill="#4f46e5">send + receive</text>
+    </g>
+  </g>
+
+  <!-- ==================== n8n workflow (the two nodes) ==================== -->
+  <g transform="translate(340, 74)">
+    <rect width="220" height="182" rx="18" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+    <text x="110" y="26" text-anchor="middle" font-size="11" font-weight="600" fill="#64748b" letter-spacing="1">n8n workflow</text>
+
+    <!-- Signal Trigger node -->
+    <g transform="translate(20, 40)" filter="url(#cardShadow)">
+      <rect width="180" height="56" rx="12" fill="white"/>
+      <rect width="56" height="56" rx="12" fill="url(#trigGrad)"/>
+      <rect x="44" width="12" height="56" fill="url(#trigGrad)"/>
+      <!-- bell icon -->
+      <g transform="translate(18, 16)">
+        <path d="M 10 2 C 6 2 4 5 4 9 L 4 15 L 2 18 L 18 18 L 16 15 L 16 9 C 16 5 14 2 10 2 Z" fill="none" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M 8 21 C 8 23 12 23 12 21" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <text x="68" y="26" font-size="14" font-weight="700" fill="#1e293b">Signal Trigger</text>
+      <text x="68" y="42" font-size="10" fill="#64748b">on message received</text>
+    </g>
+
+    <!-- Signal action node -->
+    <g transform="translate(20, 112)" filter="url(#cardShadow)">
+      <rect width="180" height="56" rx="12" fill="white"/>
+      <rect width="56" height="56" rx="12" fill="url(#actGrad)"/>
+      <rect x="44" width="12" height="56" fill="url(#actGrad)"/>
+      <!-- paper plane icon -->
+      <g transform="translate(17, 17)">
+        <path d="M 2 11 L 22 2 L 14 22 L 11 13 Z" fill="none" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+      </g>
+      <text x="68" y="26" font-size="14" font-weight="700" fill="#1e293b">Signal</text>
+      <text x="68" y="42" font-size="10" fill="#64748b">6 operations</text>
+    </g>
+  </g>
+
+  <!-- ==================== Operations ==================== -->
+  <g transform="translate(660, 90)" filter="url(#cardShadow)">
+    <rect width="180" height="150" rx="16" fill="white"/>
+    <rect width="180" height="40" rx="16" fill="url(#opsGrad)"/>
+    <rect y="28" width="180" height="12" fill="url(#opsGrad)"/>
+    <text x="90" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="white">Operations</text>
+    <g transform="translate(12, 52)" font-size="9" fill="#334155">
+      <g><rect width="76" height="20" rx="6" fill="#f59e0b" fill-opacity="0.1"/><text x="38" y="14" text-anchor="middle">Message</text></g>
+      <g transform="translate(90,0)"><rect width="76" height="20" rx="6" fill="#f59e0b" fill-opacity="0.1"/><text x="38" y="14" text-anchor="middle">Group</text></g>
+      <g transform="translate(0,30)"><rect width="76" height="20" rx="6" fill="#f59e0b" fill-opacity="0.1"/><text x="38" y="14" text-anchor="middle">Contact</text></g>
+      <g transform="translate(90,30)"><rect width="76" height="20" rx="6" fill="#f59e0b" fill-opacity="0.1"/><text x="38" y="14" text-anchor="middle">Reaction</text></g>
+      <g transform="translate(0,60)"><rect width="76" height="20" rx="6" fill="#f59e0b" fill-opacity="0.1"/><text x="38" y="14" text-anchor="middle">Receipt</text></g>
+      <g transform="translate(90,60)"><rect width="76" height="20" rx="6" fill="#f59e0b" fill-opacity="0.1"/><text x="38" y="14" text-anchor="middle">Attachment</text></g>
+    </g>
+  </g>
+
+  <!-- ==================== Flows ==================== -->
+  <!-- incoming: signal-cli -> Trigger (green, left to right) -->
+  <g>
+    <path d="M 240 138 L 360 138" stroke="#e2e8f0" stroke-width="2" fill="none"/>
+    <path d="M 240 138 L 360 138" stroke="url(#flowIn)" stroke-width="3" fill="none"/>
+    <path d="M 354 133 L 364 138 L 354 143" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <text x="300" y="128" text-anchor="middle" font-size="9" fill="#94a3b8">messages in</text>
+    <circle r="3" fill="#10b981" opacity="0">
+      <animateMotion dur="2s" repeatCount="indefinite" path="M 240 138 L 360 138"/>
+      <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- outgoing: Signal -> signal-cli (amber, right to left) -->
+  <g>
+    <path d="M 360 210 L 240 210" stroke="#e2e8f0" stroke-width="2" fill="none"/>
+    <path d="M 360 210 L 240 210" stroke="url(#flowOut)" stroke-width="3" fill="none"/>
+    <path d="M 246 205 L 236 210 L 246 215" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <text x="300" y="202" text-anchor="middle" font-size="9" fill="#94a3b8">operations out</text>
+    <circle r="3" fill="#f59e0b" opacity="0">
+      <animateMotion dur="2s" repeatCount="indefinite" path="M 360 210 L 240 210"/>
+      <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Signal node -> Operations (amber, left to right) -->
+  <g>
+    <path d="M 560 180 L 660 180" stroke="#e2e8f0" stroke-width="2" fill="none"/>
+    <path d="M 560 180 L 660 180" stroke="url(#flowOps)" stroke-width="3" fill="none"/>
+    <path d="M 654 175 L 664 180 L 654 185" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <circle r="3" fill="#d97706" opacity="0">
+      <animateMotion dur="2s" repeatCount="indefinite" path="M 560 180 L 660 180"/>
+      <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2s" repeatCount="indefinite" begin="0.4s"/>
+    </circle>
+  </g>
+</svg>
