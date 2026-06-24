@@ -4,6 +4,66 @@
   <img src="assets/signal-cli-flow.svg" alt="signal-cli bridges to n8n: incoming messages arrive via the Signal Trigger node, and the Signal node performs Message, Group, Contact, Reaction, Receipt and Attachment operations" width="900">
 </p>
 
+## Sponsors
+
+<table>
+  <tr>
+    <td align="center" width="175">
+      <a href="https://france-nuage.fr/?mtm_source=github&mtm_medium=sponsor&mtm_campaign=france-nuage&mtm_content=n8n-signal-cli">
+        <img src="assets/sponsors/france-nuage.svg" height="60" alt="France-Nuage"/><br/>
+        <b>France-Nuage</b>
+      </a><br/>
+      <sub>Self-host n8n and signal-cli on sovereign French cloud. EU-only data.</sub>
+    </td>
+    <td align="center" width="175">
+      <a href="https://www.hook0.com/?mtm_source=github&mtm_medium=sponsor&mtm_campaign=hook0&mtm_content=n8n-signal-cli">
+        <img src="assets/sponsors/hook0.png" height="60" alt="Hook0"/><br/>
+        <b>Hook0</b>
+      </a><br/>
+      <sub>Fan out your n8n and Signal events as signed webhooks. Self-hostable.</sub>
+    </td>
+    <td align="center" width="175">
+      <a href="https://getnatalia.com/?mtm_source=github&mtm_medium=sponsor&mtm_campaign=natalia&mtm_content=n8n-signal-cli">
+        <img src="assets/sponsors/natalia.svg" height="60" alt="Natalia"/><br/>
+        <b>Natalia</b>
+      </a><br/>
+      <sub>AI voice agent that calls back the leads your Signal bot captures. 24/7.</sub>
+    </td>
+    <td align="center" width="175">
+      <a href="https://netir.fr/?mtm_source=github&mtm_medium=sponsor&mtm_campaign=netir&mtm_content=n8n-signal-cli">
+        <img src="assets/sponsors/netir.svg" height="60" alt="Netir"/><br/>
+        <b>Netir</b>
+      </a><br/>
+      <sub>Hire vetted French freelancers to build and run your n8n automations.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="233">
+      <a href="https://nobullshitconseil.com/?mtm_source=github&mtm_medium=sponsor&mtm_campaign=nbc&mtm_content=n8n-signal-cli">
+        <img src="assets/sponsors/nobullshitconseil.svg" height="60" alt="NoBullshitConseil"/><br/>
+        <b>NoBullshitConseil</b>
+      </a><br/>
+      <sub>Tech advisory without the bullshit. Workflow &amp; messaging architecture.</sub>
+    </td>
+    <td align="center" width="233">
+      <a href="https://qualneo.fr/?mtm_source=github&mtm_medium=sponsor&mtm_campaign=qualneo&mtm_content=n8n-signal-cli">
+        <img src="assets/sponsors/qualneo.svg" height="60" alt="Qualneo"/><br/>
+        <b>Qualneo</b>
+      </a><br/>
+      <sub>Qualiopi LMS for French trainers. Automate learner reminders via n8n.</sub>
+    </td>
+    <td align="center" width="233">
+      <a href="https://recapro.ai/?mtm_source=github&mtm_medium=sponsor&mtm_campaign=recapro&mtm_content=n8n-signal-cli">
+        <img src="assets/sponsors/recapro.png" height="60" alt="Recapro"/><br/>
+        <b>Recapro</b>
+      </a><br/>
+      <sub>Private on-prem AI to transcribe &amp; summarise the chats n8n ingests.</sub>
+    </td>
+  </tr>
+</table>
+
+> **Interested in sponsoring?** [Get in touch](mailto:rust@fgribreau.com)
+
 This repository contains n8n nodes for interacting with Signal CLI. It includes a trigger node for receiving messages and an action node for various Signal operations.
 
 ## 📚 Table of Contents
