@@ -1,0 +1,146 @@
+{
+  "dm_uuid_only_outgoing": {
+    "envelope": {
+      "source": "+33600000000",
+      "sourceNumber": "+33600000000",
+      "sourceUuid": "33333333-3333-4333-8333-333333333333",
+      "sourceName": "Account Owner",
+      "sourceDevice": 1,
+      "timestamp": 1788354057513,
+      "serverReceivedTimestamp": 1788354059568,
+      "serverDeliveredTimestamp": 1788354059582,
+      "syncMessage": {
+        "sentMessage": {
+          "destination": "abcdef01-2345-4678-89ab-cdef01234567",
+          "destinationNumber": null,
+          "destinationUuid": "abcdef01-2345-4678-89ab-cdef01234567",
+          "timestamp": 1788354057513,
+          "message": null,
+          "expiresInSeconds": 0,
+          "isExpirationUpdate": false,
+          "viewOnce": false,
+          "attachments": [
+            {
+              "contentType": "audio/aac",
+              "filename": "signal-2026-09-02-15-00-57-500.m4a",
+              "id": "Wnndv4Hr8u3bk6x88p7Z.m4a",
+              "size": 264175,
+              "width": null,
+              "height": null,
+              "caption": null,
+              "uploadTimestamp": 1788354058162
+            }
+          ]
+        }
+      }
+    },
+    "expected": "abcdef01-2345-4678-89ab-cdef01234567"
+  },
+  "group_incoming": {
+    "envelope": {
+      "source": "+33700000000",
+      "sourceNumber": "+33700000000",
+      "sourceUuid": "22222222-2222-4222-8222-222222222222",
+      "sourceName": "Test Contact",
+      "sourceDevice": 1,
+      "timestamp": 1788351979717,
+      "serverReceivedTimestamp": 1788351982867,
+      "serverDeliveredTimestamp": 1788351982892,
+      "dataMessage": {
+        "timestamp": 1788351979717,
+        "message": null,
+        "expiresInSeconds": 0,
+        "isExpirationUpdate": false,
+        "viewOnce": false,
+        "attachments": [
+          {
+            "contentType": "audio/aac",
+            "filename": "signal-2026-09-02-14-26-19-709.m4a",
+            "id": "uifoy6_f4Is7XVKY0Nzi.m4a",
+            "size": 204201,
+            "width": null,
+            "height": null,
+            "caption": null,
+            "uploadTimestamp": 1788351980468
+          }
+        ],
+        "groupInfo": {
+          "groupId": "R0lGdW1teUdyb3VwSWRGb3JQdWJsaWNUZXN0aW5nMDA=",
+          "groupName": "Test Group",
+          "revision": 4,
+          "type": "DELIVER"
+        }
+      }
+    },
+    "expected": "R0lGdW1teUdyb3VwSWRGb3JQdWJsaWNUZXN0aW5nMDA="
+  },
+  "dm_number_outgoing": {
+    "envelope": {
+      "source": "+33600000000",
+      "sourceNumber": "+33600000000",
+      "sourceUuid": "33333333-3333-4333-8333-333333333333",
+      "sourceName": "Account Owner",
+      "sourceDevice": 1,
+      "timestamp": 1788354095485,
+      "serverReceivedTimestamp": 1788354097391,
+      "serverDeliveredTimestamp": 1788354097403,
+      "syncMessage": {
+        "sentMessage": {
+          "destination": "+33700000000",
+          "destinationNumber": "+33700000000",
+          "destinationUuid": "22222222-2222-4222-8222-222222222222",
+          "timestamp": 1788354095485,
+          "message": null,
+          "expiresInSeconds": 0,
+          "isExpirationUpdate": false,
+          "viewOnce": false,
+          "attachments": [
+            {
+              "contentType": "audio/aac",
+              "filename": "signal-2026-09-02-15-01-35-479.m4a",
+              "id": "VsXsENxPU6od7fSyVYeN.m4a",
+              "size": 157862,
+              "width": null,
+              "height": null,
+              "caption": null,
+              "uploadTimestamp": 1788354096039
+            }
+          ]
+        }
+      }
+    },
+    "expected": "+33700000000"
+  },
+  "dm_number_incoming": {
+    "envelope": {
+      "source": "+33700000000",
+      "sourceNumber": "+33700000000",
+      "sourceUuid": "22222222-2222-4222-8222-222222222222",
+      "sourceName": "Test Contact",
+      "sourceDevice": 1,
+      "timestamp": 1788353949779,
+      "serverReceivedTimestamp": 1788353951458,
+      "serverDeliveredTimestamp": 1788353951477,
+      "dataMessage": {
+        "timestamp": 1788353949779,
+        "message": null,
+        "expiresInSeconds": 0,
+        "isExpirationUpdate": false,
+        "viewOnce": false,
+        "attachments": [
+          {
+            "contentType": "audio/aac",
+            "filename": "signal-2026-09-02-14-59-09-771.m4a",
+            "id": "xhXaji271FUCbgyRdJ3t.m4a",
+            "size": 192112,
+            "width": null,
+            "height": null,
+            "caption": null,
+            "uploadTimestamp": 1788353950367
+          }
+        ]
+      }
+    },
+    "expected": "+33700000000"
+  }
+}

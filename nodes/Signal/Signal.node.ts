@@ -5,7 +5,7 @@ import {
   INodeTypeDescription,
   NodeOperationError,
 } from "n8n-workflow";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { v4 as uuidv4 } from "uuid";
 import Debug from "debug";
 import { sendSignalMessage } from "../../utils/signalApi";
@@ -749,9 +749,26 @@ export class Signal implements INodeType {
       if (error instanceof NodeOperationError) {
         throw error;
       }
+      // Surface the underlying HTTP failure (status + body) instead of a
+      // blanket "Error interacting with Signal API" that discards it.
+      const axiosError = axios.isAxiosError(error)
+        ? (error as AxiosError)
+        : undefined;
+      const httpCode = axiosError?.response?.status;
+      const responseBody = axiosError?.response?.data
+        ? JSON.stringify(axiosError.response.data)
+        : undefined;
+      const detail = [
+        error instanceof Error ? error.message : String(error),
+        httpCode !== undefined ? `httpCode=${httpCode}` : undefined,
+        responseBody ? `body=${responseBody}` : undefined,
+      ]
+        .filter(Boolean)
+        .join(" | ");
+      debug("Signal Node: request failed - %s", detail);
       throw new NodeOperationError(
         this.getNode(),
-        "Error interacting with Signal API",
+        `Error interacting with Signal API: ${detail}`,
         {
           itemIndex: 0,
         }
